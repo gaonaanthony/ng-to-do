@@ -1,0 +1,11 @@
+:host {
+    display: block;
+}
+
+.to-do-list {
+    max-width: 50em;
+}
+
+.text-strike-through {
+    text-decoration: line-through;
+}

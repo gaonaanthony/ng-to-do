@@ -1,0 +1,3 @@
+<input type="text" class="form-control" value="{{ toDo.title }}" #title (keydown)="onKeyDown( $event )" />
+
+<button class="btn btn-outline-success ml-2" appActionButton [appAction]="'save'" [data]="toDo" [inputs]="[title]" (action)="onAction( $event )">Save</button>

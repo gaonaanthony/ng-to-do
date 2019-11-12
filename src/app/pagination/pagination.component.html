@@ -1,0 +1,16 @@
+<nav class="d-flex justify-content-center">
+	<ul class="pagination" (change)="onChange( $event )">
+		<li class="page-item">
+			<input type="radio" value="-1" id="Prev" name="paginate" />
+			<label for="Prev" class="page-link ">Previous</label>
+		</li>
+		<li class="page-item" *ngFor="let page of pagingOptions; let i = index">
+			<input type="radio" value="{{ i + 1 }}" id="Index{{ i + 1 }}" name="paginate" />
+			<label for="Index{{ i + 1 }}" class="page-link ">{{ i + 1 }}</label>
+		</li>
+		<li class="page-item">
+			<input type="radio" value="9999" id="Next" name="paginate" />
+			<label for="Next" class="page-link ">Next</label>
+		</li>
+	</ul>
+</nav>

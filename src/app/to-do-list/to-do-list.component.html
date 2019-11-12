@@ -1,0 +1,78 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="to-do-list py-4 mx-auto">
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Completed</th>
+							<th scope="col">Task</th>
+							<th scope="col">Edit</th>
+							<th scope="col">Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let item of itemsToDisplay">
+							<td>
+								<div class="custom-control custom-checkbox">
+									<input type="checkbox" id="completed_{{ item.id }}" name="completed_{{ item.id }}"
+										class="custom-control-input" [checked]="item.completed === true"
+										(change)="toggleCompleted( item.id )" />
+									<label class="custom-control-label" for="completed_{{ item.id }}"></label>
+								</div>
+							</td>
+							<td>
+								<p class="ml-2 mb-0" *ngIf="!item.editing"
+									[ngClass]="{ 'text-black-50 text-strike-through': item.completed }">{{ item.title }}
+								</p>
+								<div *ngIf="item.editing">
+									<app-edit-item class="d-flex" (action)="handleAction( $event )" [toDo]="item">
+									</app-edit-item>
+								</div>
+							</td>
+							<td>
+								<button class="btn btn-outline-primary ml-2" appActionButton [appAction]="'edit'"
+									[data]="item" [inputs]="[]" (action)="handleAction( $event )">
+									<i class="fa fa-window-close" title="Cancel" *ngIf="item.editing"></i>
+									<i class="fa fa-pencil" title="Edit" *ngIf="!item.editing"></i>
+								</button>
+							</td>
+							<td>
+								<button class="btn btn-outline-danger ml-2" appActionButton [appAction]="'delete'"
+									[data]="item" [inputs]="[]" (action)="handleAction( $event )">
+									<i class="fa fa-times" title="Delete"></i>
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<app-pagination [pages]="numOfPages"></app-pagination>
+		</div>
+	</div>
+</div>
+<!-- 
+
+<ul class="list-unstyled">
+		<li class="d-flex align-items-center" *ngFor="let item of items"
+			[ngClass]="{ 'text-black-50': item.completed }">
+			<div class="flex-shrink-1">
+				<input type="checkbox" name="completed_{{ item.id }}" id="completed_{{ item.id }}"
+					[checked]="item.completed === true" (change)="toggleCompleted($event)" />
+			</div>
+			<div class="d-flex align-items-center justify-content-between flex-grow-1">
+				<p class="ml-2 mb-0" *ngIf="!item.editing">{{ item.title }}</p>
+				<div *ngIf="item.editing">
+					<input type="text" value="{{ item.title }}" />
+				</div>
+				<div class="d-flex align-items-center ml-auto">
+					<button (click)="editItem( item.id )">
+						<i class="fa fa-pencil"></i>
+					</button>
+					<button class="ml-2">
+						<i class="fa fa-times"></i>
+					</button>
+				</div>
+			</div>
+		</li>
+	</ul> -->

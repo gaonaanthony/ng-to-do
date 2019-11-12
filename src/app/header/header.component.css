@@ -1,0 +1,14 @@
+:host {
+    display: block;
+    background-color: #64788C;
+}
+
+.menu-btn-container {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.header-title h1 {
+    color: #FFF;
+}
